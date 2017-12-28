@@ -8,9 +8,9 @@ struct stack
     int bowels[STACKSIZE];
 };
 
-void push(struct stack *koval, int nova)    /* function push that puts element in stack */
+void push(struct stack *koval, int nova)    
 {
-    if (koval->size == STACKSIZE)   /* check overflow */
+    if (koval->size == STACKSIZE)   
     {
         printf("Error");
     }
@@ -22,9 +22,9 @@ void push(struct stack *koval, int nova)    /* function push that puts element i
 
 }
 
-int pop(struct stack *koval)    /*function pop that returns last element in stack*/
+int pop(struct stack *koval)    
 {
-    if (koval->size == 0)   /*check underflow*/
+    if (koval->size == 0)   
     {
         printf("Error");
         return 0;
@@ -48,7 +48,7 @@ int main()
     {
 
         size = strlen(actual);
-        if ((size > 1) || (actual[0] <= '9' && actual[0] >= '0') ) /*check if element is number*/
+        if ((size > 1) || (actual[0] <= '9' && actual[0] >= '0') ) 
         {
             rez = atoi(actual);
             push(&kovalkulyator, rez);
