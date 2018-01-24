@@ -65,11 +65,13 @@ int main()
                 push(&kovalkulyator, a + b);
                 break;
             case '-':
-                if actual[1] == ' '
+                if (actual[1] == ' ')
                     break;
                 else
+                {
                     push(&kovalkulyator, a - b);
                     break;
+                }
             case '*':
                 push(&kovalkulyator, a * b);
                 break;
