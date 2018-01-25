@@ -10,7 +10,7 @@ struct stack
 
 void push(struct stack *koval, int nova)    
 {
-    if (koval->size == STACKSIZE)   
+    if (koval->size >= STACKSIZE)   
     {
         printf("Error");
     }
