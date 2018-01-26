@@ -8,11 +8,11 @@ struct stack
     int bowels[STACKSIZE];
 };
 
-void push(struct stack *koval, int nova)    
+void push(struct stack *koval, int nova)
 {
-    if (koval->size >= STACKSIZE)   
+    if (koval->size >= STACKSIZE)
     {
-        printf("Error");
+        printf("Stack is full");
     }
     else
     {
@@ -22,11 +22,11 @@ void push(struct stack *koval, int nova)
 
 }
 
-int pop(struct stack *koval)    
+int pop(struct stack *koval)
 {
-    if (koval->size == 0)   
+    if (koval->size == 0)
     {
-        printf("Error");
+        printf("Stack is empty");
         return 0;
     }
     else
@@ -46,45 +46,47 @@ int main()
     int a, b;
     while (scanf("%s", actual) != EOF)
     {
-
         size = strlen(actual);
-        if ((size > 1) || (actual[0] <= '9' && actual[0] >= '0') ) 
+        if ((size > 1) || (actual[0] <= '9' && actual[0] >= '0') )
         {
             rez = atoi(actual);
             push(&kovalkulyator, rez);
         }
         else
         {
-            if (size == 0)
-                break;
-            b = pop(&kovalkulyator);
-            a = pop(&kovalkulyator);
-            switch(actual[0])
+            if (size == 1 && kovalkulyator.size == 2)
             {
-            case '+':
-                push(&kovalkulyator, a + b);
-                break;
-            case '-':
-                if (actual[1] == ' ')
-                    break;
-                else
+                b = pop(&kovalkulyator);
+                a = pop(&kovalkulyator);
+                switch(actual[0])
                 {
-                    push(&kovalkulyator, a - b);
+                case '+':
+                    push(&kovalkulyator, a + b);
                     break;
+                case '-':
+                    if (actual[1] == ' ')
+                        break;
+                    else
+                    {
+                        push(&kovalkulyator, a - b);
+                        break;
+                    }
+                case '*':
+                    push(&kovalkulyator, a * b);
+                    break;
+                case '/':
+                    push(&kovalkulyator, a / b);
+                    break;
+             default:
+                    printf("unknown");
                 }
-            case '*':
-                push(&kovalkulyator, a * b);
-                break;
-            case '/':
-                push(&kovalkulyator, a / b);
-            default:
-                printf("error");
             }
-
+        }
+        if (actual[0] == '=')
+        {
+            result = pop(&kovalkulyator);
+            printf("%d\n", result);
         }
     }
-    result = pop(&kovalkulyator);
-    printf("%d", result);
     return 0;
 }
-
